@@ -1,0 +1,43 @@
+# Build y IDE
+.gradle/
+build/
+.idea/
+.kotlin/
+.cxx/
+*.iml
+captures/
+.externalNativeBuild/
+node_modules/
+.godot/
+.import/
+
+# Secretos y firma (nunca subir)
+local.properties
+keystore.properties
+*.jks
+*.keystore
+*.p12
+*.pem
+google-services.json
+GoogleService-Info.plist
+.env
+.env.*
+.firebaserc
+.runtimeconfig.json
+export_credentials.cfg
+
+# Binarios y registros
+*.apk
+*.aab
+*.log
+app/release/
+app/debug/
+
+# Herramientas de IA locales
+.claude/
+.gemini/
+.codex/
+CLAUDE.md
+AGENTS.md
+GEMINI.md
+.agents/

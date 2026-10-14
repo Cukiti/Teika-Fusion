@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  IDs REALES de AdMob. Solo entran en el buildType RELEASE.
+
+  El buildType debug usa los IDs de prueba de Google (app/src/debug/res/values/admob.xml), y esa
+  separación NO es cosmética: hacer clic en tus propios anuncios REALES durante el desarrollo genera
+  tráfico inválido, y AdMob suspende cuentas por ello. Con esta división es imposible equivocarse.
+-->
+<resources>
+    <string name="admob_app_id" translatable="false">ca-app-pub-5852895823468093~1985749054</string>
+    <string name="admob_rewarded_unit_id" translatable="false">ca-app-pub-5852895823468093/2368324210</string>
+
+    <!-- BANNER de la partida (ui/BannerAd.kt). Bloque real, movido aquí desde el source set DEBUG
+         el 2026-08-09: estaba en el archivo equivocado, así que la versión publicada enseñaba
+         "Test Ad" abajo sin ingresar nada mientras el APK de desarrollo pedía inventario REAL. -->
+    <string name="admob_banner_unit_id" translatable="false">ca-app-pub-5852895823468093/4652610739</string>
+
+    <!-- INTERSTICIAL entre niveles / al salir del game over (AdManager.showInterstitialAd). -->
+    <string name="admob_interstitial_unit_id" translatable="false">ca-app-pub-5852895823468093/9602798478</string>
+</resources>

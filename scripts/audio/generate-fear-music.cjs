@@ -1,0 +1,17 @@
+const fs=require('fs'),crypto=require('crypto');
+const base='%USERPROFILE%/.codex/artifacts/elevenlabs/biome-fear-music-2026-09-15';fs.mkdirSync(base,{recursive:true});
+const receipt=base+'/generation.json',output=base+'/bgm_fear-source.mp3';
+const positive=['instrumental game background music','playful mysterious Japanese electropop','warm rounded synth bass','delicate celesta and soft digital bells','subtle syncopated electronic percussion','small memorable minor-key melody','steady moderate energy','clean transparent mix','circular musical structure'];
+const negative=['vocals','speech','choir','screams','jump scares','hiss','vinyl noise','distortion','loud impacts','EDM drops','dramatic climax','fade out','outro','closing cadence','silence'];
+const notes=[
+ 'Begin directly with the established groove and full gentle texture. A mysterious enchanted forest for a calm mental puzzle. Follow the reference production clarity, rhythmic ease and melodic charm, but introduce a new original mysterious minor-key motif. No frightening horror atmosphere.',
+ 'Continue the same tempo, harmony family and instrumentation. Subtle melodic variation without raising energy or introducing new sections. Leave room for gameplay effects.',
+ 'Return naturally to the opening motif and repeating harmonic cycle. Keep the same bass pulse, drums, texture and loudness through the final beat. The next beat is the first beat of the opening: no ending, no pause, no slowdown, no final flourish or fade.'
+];
+const chunks=notes.map(n=>({text:'[Instrumental]\n'+n.split(/(?<=\.) /).map(line=>'{'+line+'}').join('\n'),duration_ms:60000,positive_styles:positive,negative_styles:negative,context_adherence:'high'}));
+chunks[0].conditioning_ref={song_id:'E49gE1e6kKdfnM6s8mP7_upload',range:{start_ms:0,end_ms:30000}};chunks[0].condition_strength='high';
+const body={model_id:'music_v2_5',composition_plan:{chunks},store_for_inpainting:true};
+async function main(){if(fs.existsSync(receipt)||fs.existsSync(output))throw Error('Prior attempt exists; inspect instead of retry');const key=process.env.ELEVENLABS_API_KEY;if(!key)throw Error('Key unavailable');
+const rec={id:'bgm_fear',model:'music_v2_5',subscriptionTierAtGeneration:'starter',subscriptionStatusAtGeneration:'active',body,startedAt:new Date().toISOString(),status:'started; never retry automatically'};fs.writeFileSync(receipt,JSON.stringify(rec,null,2));
+try{const r=await fetch('https://api.elevenlabs.io/v1/music?output_format=mp3_44100_128',{method:'POST',headers:{'xi-api-key':key,'Content-Type':'application/json'},body:JSON.stringify(body),signal:AbortSignal.timeout(240000)});rec.httpStatus=r.status;rec.requestId=r.headers.get('request-id')??r.headers.get('x-request-id');rec.songId=r.headers.get('song-id');if(!r.ok){rec.status='rejected';rec.error=(await r.text()).slice(0,2000);throw Error('Generation HTTP '+r.status+': '+rec.error);}const data=Buffer.from(await r.arrayBuffer());fs.writeFileSync(output,data);Object.assign(rec,{status:'generated; awaiting listening',output,bytes:data.length,sha256:crypto.createHash('sha256').update(data).digest('hex'),completedAt:new Date().toISOString()});console.log('Music generated: '+output);}catch(e){if(rec.status!=='rejected')rec.status='uncertain; do not retry';throw e;}finally{fs.writeFileSync(receipt,JSON.stringify(rec,null,2)+'\n');}}
+main().catch(e=>{console.error(e.message);process.exitCode=1});

@@ -1,0 +1,19 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Teika Fusion</string>
+
+    <!-- Play Store listing — NO los usa el código: son la fuente de verdad de los textos que se
+         copian a Play Console (por eso el tools:ignore). OJO: mantenerlos fieles al juego REAL. -->
+    <string name="short_description" tools:ignore="UnusedResources">¡Fusiona Teikas, rompe bloques y desata el caos en este puzzle explosivo!</string>
+    <string name="full_description" tools:ignore="UnusedResources">Teika Fusion es el puzzle de fusión que combina lo mejor de Suika Game y Block Blast.\n\nColoca piezas en el tablero 8×8 y completa líneas para invocar Teikas: criaturas redondas con física real que caen, ruedan… ¡y se fusionan al tocarse, en cadena, hasta el devastador MEGA TEIKA que irrumpe llenando el tablero entero!\n\n✦ MECÁNICAS ÚNICAS\n• Fichas de múltiples formas (poliominós)\n• Los Teikas son cuerpos físicos: caen, ruedan y ayudan a completar líneas\n• Fusión por contacto: TEIKA 1→2→3→4→MEGA TEIKA\n• Encadena combos y desata lluvias de puntos\n\n✦ UN VIAJE DE 14 BIOMAS\n• Cientos de niveles por capítulos, cada bioma con su propia mecánica que lucha contra ti: lava que avanza, hielo que congela, un glotón que devora el tablero…\n• Compañeros desbloqueables, cada uno con su habilidad\n\n✦ CARACTERÍSTICAS\n• Guardado en la nube con tu cuenta de Google\n• Monedas y revive\n• Sin conexión requerida\n\n¿Puedes llegar al MEGA TEIKA definitivo?</string>
+
+    <string name="privacy_policy_url"  translatable="false">https://teika-fusion.web.app/privacy-policy</string>
+    <!-- Reservada para la ficha de Play / pantalla legal futura (no referenciada aún). -->
+    <string name="terms_of_service_url" translatable="false" tools:ignore="UnusedResources">https://teika-fusion.web.app/terms</string>
+    <!-- URL de borrado de cuenta: Play Console la pide en «Seguridad de los datos» APARTE de la
+         opción dentro de la app (Ajustes → Zona de peligro → Eliminar mi cuenta). -->
+    <string name="delete_account_url" translatable="false" tools:ignore="UnusedResources">https://teika-fusion.web.app/borrar-cuenta</string>
+
+
+    <!-- Canal de notificaciones de reenganche (energía llena, reto diario, racha en peligro). -->
+    <string name="notif_channel_reengage" translatable="false">teika_reengage</string>
+</resources>

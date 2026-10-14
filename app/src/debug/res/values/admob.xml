@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  IDs de PRUEBA oficiales de Google (documentados y públicos). Solo entran en el buildType DEBUG.
+
+  Sirven anuncios de demostración: puedes pulsarlos todas las veces que quieras sin ensuciar las
+  métricas ni arriesgar la cuenta. Los reales viven en app/src/release/res/values/admob.xml.
+  https://developers.google.com/admob/android/test-ads
+
+  ⚠ NO PEGUES AQUÍ UN BLOQUE REAL (los que empiezan por ca-app-pub-5852895823468093). Este archivo es
+  el que usa el APK con el que desarrollas, o sea el que TÚ pulsas: cada toque sería tráfico
+  inválido sobre tu propia cuenta, y AdMob suspende por eso. Si necesitas ver tu inventario real en
+  el móvil, no toques este archivo — registra el aparato en AdMob → Configuración → Dispositivos de
+  prueba: sirve anuncios reales marcados como test y los clics no cuentan.
+-->
+<resources>
+    <string name="admob_app_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_rewarded_unit_id" translatable="false">ca-app-pub-3940256099942544/5224354917</string>
+    <string name="admob_banner_unit_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="admob_interstitial_unit_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
+</resources>

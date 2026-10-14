@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html devsite="">
+<head>
+  <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.0.0">
+  <title>GamesSignInClient</title>
+  <meta name="book_path" value="/android/_book.yaml">
+  <meta name="project_path" value="/android/_project.yaml">
+  <meta name="translation" value="disabled">
+  <meta name="generator" content="Doclava">
+  <meta name="gtm_var" data-key="docType" data-value="reference">
+  <meta name="page_type" value="reference">
+  <link rel="stylesheet" href="/site-assets/doclava-devsite.css">
+</head>
+<body>
+  <div id="api-info-block">
+    <div class="api-level"></div>
+  </div><!-- end api-info-block -->
+  <!-- ======== START OF CLASS DATA ======== -->
+  <div id="jd-header">
+    public interface <b>GamesSignInClient</b>
+  </div><!-- end jd-header -->
+  <div id="naMessage"></div>
+  <div id="jd-content">
+    <div class="jd-descr">
+      <p>A client for performing sign-in with Play Games Services.</p>
+    </div><!-- jd-descr -->
+    <div class="jd-descr">
+      <section id="xml-attributes">
+        <!-- ========== METHOD SUMMARY =========== -->
+        <section>
+          <h3>Public Method Summary</h3>
+          <table id="pubmethods" class="jd-sumtable">
+            <tr>
+              <td class="jd-typecol">
+                abstract <a href=
+                "/android/reference/com/google/android/gms/tasks/Task.html">Task</a>&lt;<a href=
+                "/android/reference/com/google/android/gms/games/AuthenticationResult.html">AuthenticationResult</a>&gt;
+              </td>
+              <td class="jd-linkcol" width="100%">
+                <div class="jd-hang">
+                  <span class="sympad"><a href=
+                  "/android/reference/com/google/android/gms/games/GamesSignInClient.html#isAuthenticated()">
+                  isAuthenticated</a></span>()
+                  <div class="jd-descrdiv">
+                    Returns the current authentication status via an <code><a href=
+                    "/android/reference/com/google/android/gms/games/AuthenticationResult.html">AuthenticationResult</a></code>.
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="jd-typecol">
+                abstract <a href=
+                "/android/reference/com/google/android/gms/tasks/Task.html">Task</a>&lt;<a href=
+                "//developer.android.com/reference/java/lang/String.html">String</a>&gt;
+              </td>
+              <td class="jd-linkcol" width="100%">
+                <div class="jd-hang">
+                  <span class="sympad"><a href=
+                  "/android/reference/com/google/android/gms/games/GamesSignInClient.html#requestServerSideAccess(java.lang.String,%20boolean)">
+                  requestServerSideAccess</a></span>(<a href=
+                  "//developer.android.com/reference/java/lang/String.html">String</a>
+                  serverClientId, boolean forceRefreshToken)
+                  <div class="jd-descrdiv">
+                    Requests server-side access to Play Games Services for the currently signed-in
+                    player.
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="jd-typecol">
+                abstract <a href=
+                "/android/reference/com/google/android/gms/tasks/Task.html">Task</a>&lt;<a href=
+                "/android/reference/com/google/android/gms/games/AuthenticationResult.html">AuthenticationResult</a>&gt;
+              </td>
+              <td class="jd-linkcol" width="100%">
+                <div class="jd-hang">
+                  <span class="sympad"><a href=
+                  "/android/reference/com/google/android/gms/games/GamesSignInClient.html#signIn()">
+                  signIn</a></span>()
+                  <div class="jd-descrdiv">
+                    Manually requests that your game sign in with Play Games Services.
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </section>
+      </section><!-- end inhmethods -->
+    </div><!-- class="jd-descr" (end of Summary) -->
+    <!-- Details -->
+    <!-- XML Attributes -->
+    <!-- Enum Values -->
+    <!-- Constants -->
+    <!-- Fields -->
+    <!-- Public ctors -->
+    <!-- ========= CONSTRUCTOR DETAIL ======== -->
+    <!-- Protected ctors -->
+    <!-- ========= METHOD DETAIL ======== -->
+    <!-- Public methdos -->
+    <section id="public-methods">
+      <h2>Public Methods</h2><a name="isAuthenticated()" id="isAuthenticated()"></a>
+      <div class="jd-details">
+        <h4 class="jd-details-title"><span class="normal">public abstract <a href=
+        "/android/reference/com/google/android/gms/tasks/Task.html">Task</a>&lt;<a href=
+        "/android/reference/com/google/android/gms/games/AuthenticationResult.html">AuthenticationResult</a>&gt;</span>
+        <span class="sympad"><strong>isAuthenticated</strong></span> <span class=
+        "params">()</span></h4>
+        <div class="api-level"></div>
+        <div class="jd-details-descr">
+          <div class="jd-tagdata jd-tagdescr">
+            <p>Returns the current authentication status via an <code><a href=
+            "/android/reference/com/google/android/gms/games/AuthenticationResult.html">AuthenticationResult</a></code>.</p>
+            <p>If a sign-in flow is currently in progress (such as the automatic sign-in attempt
+            during game start), delivery of this call's result will be postponed until the current
+            sign-in attempt has completed.</p>
+            <p>This API is useful for understanding if your game has access to Play Games Services.
+            This method should be called when your game starts in order to conditionally enable or
+            disable your Play Games Services integration.</p>
+            <p>Example usage:</p>
+            <pre class="prettyprint">
+ GamesSignInClient gamesSignInClient = PlayGames.getGamesSignInClient(this);
+ gamesSignInClient.isAuthenticated().addOnCompleteListener(isAuthenticatedTask -&gt; {
+   if (!isAuthenticatedTask.isSuccessful()) {
+     // Disable Play Games Services integration
+     return;
+   }
+
+   AuthenticationResult authenticationResult = isAuthenticatedTask.getResult();
+   if (!authenticationResult.isAuthenticated()) {
+     // Disable Play Games Services integration
+     return;
+   }
+
+   // Enable Play Games Services integration
+ });
+ </pre>
+          </div>
+          <div class="jd-tagdata">
+            <h5 class="jd-tagtitle">Returns</h5>
+            <ul class="nolist">
+              <li>A <code><a href=
+              "/android/reference/com/google/android/gms/tasks/Task.html">Task</a></code> providing
+              an <code><a href=
+              "/android/reference/com/google/android/gms/games/AuthenticationResult.html">AuthenticationResult</a></code>
+              that indicates the current authentication status.</li>
+            </ul>
+          </div>
+        </div>
+      </div><a name="requestServerSideAccess(java.lang.String,%20boolean)" id=
+      "requestServerSideAccess(java.lang.String,%20boolean)"></a>
+      <div class="jd-details">
+        <h4 class="jd-details-title"><span class="normal">public abstract <a href=
+        "/android/reference/com/google/android/gms/tasks/Task.html">Task</a>&lt;<a href=
+        "//developer.android.com/reference/java/lang/String.html">String</a>&gt;</span>
+        <span class="sympad"><strong>requestServerSideAccess</strong></span> <span class=
+        "params">(<a href="//developer.android.com/reference/java/lang/String.html">String</a>
+        serverClientId, boolean forceRefreshToken)</span></h4>
+        <div class="api-level"></div>
+        <div class="jd-details-descr">
+          <div class="jd-tagdata jd-tagdescr">
+            <p>Requests server-side access to Play Games Services for the currently signed-in
+            player.</p>
+            <p>When requested, an authorization code is returned that can be used by your server to
+            exchange for an access token (and conditionally a refresh token when
+            <code>forceRefreshToken</code> is <code>true</code>). The access token may then be used
+            by your server to access the Play Games Services web APIs. This is commonly used to
+            complete a sign-in flow by verifying the Play Games Services player ID.</p>
+            <p>If <code>forceRefreshToken</code> is <code>true</code>, when exchanging the
+            authorization code, a refresh token will be returned in addition to the access token.
+            The refresh token allows your server to request additional access tokens, allowing your
+            server to continue accesses Play Games Services while the user is not actively playing
+            your game. Refresh tokens are only generated for players that have auto sign-in setting
+            enabled.</p>
+          </div>
+          <div class="jd-tagdata">
+            <h5 class="jd-tagtitle">Parameters</h5>
+            <table class="jd-tagtable">
+              <tr>
+                <th>serverClientId</th>
+                <td>The client ID of the server that will perform the authorization code flow
+                exchange.</td>
+              </tr>
+              <tr>
+                <th>forceRefreshToken</th>
+                <td>If <code>true</code>, when the returned authorization code is exchanged, a
+                refresh token will be included in addition to an access token.</td>
+              </tr>
+            </table>
+          </div>
+          <div class="jd-tagdata">
+            <h5 class="jd-tagtitle">Returns</h5>
+            <ul class="nolist">
+              <li>A <code><a href=
+              "/android/reference/com/google/android/gms/tasks/Task.html">Task</a></code> providing
+              an OAuth 2.0 authorization code as a string. This code can be exchanged by your
+              server for an access token (and conditionally a refresh token) that can be used to
+              access the Play Games Services web APIs.</li>
+            </ul>
+          </div>
+        </div>
+      </div><a name="signIn()" id="signIn()"></a>
+      <div class="jd-details">
+        <h4 class="jd-details-title"><span class="normal">public abstract <a href=
+        "/android/reference/com/google/android/gms/tasks/Task.html">Task</a>&lt;<a href=
+        "/android/reference/com/google/android/gms/games/AuthenticationResult.html">AuthenticationResult</a>&gt;</span>
+        <span class="sympad"><strong>signIn</strong></span> <span class="params">()</span></h4>
+        <div class="api-level"></div>
+        <div class="jd-details-descr">
+          <div class="jd-tagdata jd-tagdescr">
+            <p>Manually requests that your game sign in with Play Games Services.</p>
+            <p>Note that a sign-in attempt will be made automatically when your game starts. Games
+            will only need to manually request to sign in if the automatic sign-in attempt
+            failed.</p>
+          </div>
+          <div class="jd-tagdata">
+            <h5 class="jd-tagtitle">Returns</h5>
+            <ul class="nolist">
+              <li>A <code><a href=
+              "/android/reference/com/google/android/gms/tasks/Task.html">Task</a></code> that
+              signals the result of the sign-in attempt.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section><!-- ========= METHOD DETAIL ======== -->
+    <!-- ========= END OF CLASS DATA ========= -->
+    <a name="navbar_top" id="navbar_top"></a>
+  </div><!-- jd-content -->
+</body>
+</html>

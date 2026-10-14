@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    QUÉ SE LLEVA ANDROID DE ESTA APP (Android 12+). Escrito el 2026-09-01 tras un bug reproducido en
+    el móvil del usuario: borró los datos, DESINSTALÓ la app y, al reinstalar desde Android Studio,
+    el juego arrancó con la cuenta de antes… mientras Ajustes le pedía iniciar sesión.
+
+    La causa estaba aquí: este fichero y `backup_rules.xml` eran la PLANTILLA de Android Studio, con
+    todo comentado, y `allowBackup` estaba en `true`. Con eso Android se lleva el directorio de datos
+    ENTERO y lo devuelve al reinstalar. Los timestamps del dispositivo lo demostraron: los ficheros
+    restaurados venían con fecha de 1970 y los de la instalación nueva con la del día.
+
+    Y lo que se restauraba era veneno:
+
+      · `com.google.firebase.auth.api.Store.*.xml` (7 KB) — la sesión de Firebase Auth, cifrada.
+      · `com.google.firebase.auth.api.crypto.*.xml` — **la clave para descifrarla, que NO se
+        restaura**: se regenera en cada instalación.
+
+    O sea que la app volvía con un cadáver de sesión que no se puede abrir: progreso local por un
+    lado y una sesión ilegible por otro. De ahí el «tengo mi cuenta pero Ajustes dice que entre».
+
+    LA DECISIÓN: esta app **tiene su propio respaldo** —Firestore `cloud_saves`, detrás de una cuenta
+    de Google— y le insiste al jugador en vincularla precisamente para no perder la partida. Con el
+    respaldo automático de Android encima, ese aviso era mentira y además rompía la sesión. Así que
+    la copia de nube se apaga entera (ver `allowBackup="false"` en el manifiesto) y aquí se deja
+    escrito, que es donde alguien lo va a buscar.
+
+    El TRASPASO A OTRO MÓVIL sí sigue vivo —`allowBackup=false` no lo apaga— pero **sin los
+    `shared_prefs`**: ahí viven la sesión cifrada y las cachés de los SDK, que en el móvil nuevo no
+    valen nada. El progreso del juego viaja igual porque vive en DataStore (`files/datastore`).
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude domain="root" path="." />
+        <exclude domain="file" path="." />
+        <exclude domain="database" path="." />
+        <exclude domain="sharedpref" path="." />
+        <exclude domain="external" path="." />
+    </cloud-backup>
+
+    <device-transfer>
+        <!-- La sesión de Firebase Auth va cifrada con una clave que NO viaja: llevársela solo
+             consigue que el móvil nuevo arranque con una sesión que no puede abrir. -->
+        <exclude domain="sharedpref" path="." />
+    </device-transfer>
+</data-extraction-rules>

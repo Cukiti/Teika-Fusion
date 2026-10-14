@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Recursos que el shrinker de release NO puede ver (se leen por nombre, no por R.*):
+
+  - @string/default_web_client_id: lo GENERA el plugin google-services desde el cliente OAuth web
+    (client_type 3) y `GoogleManager.init` lo lee con `Resources.getIdentifier`. Sin este keep,
+    `isShrinkResources` lo borraba del AAB y el login de Google moría en release con
+    «Google no está disponible en esta versión del juego» (debug funcionaba por no minificar).
+  - @string/google_crash_reporting_api_key: igual, lo resuelve Crashlytics por recurso.
+  - @string/project_id, @string/google_app_id: los lee `AuthDiagnostics` por nombre para volcar la
+    configuración de login en Logcat.
+-->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@raw/bgm_gameplay,@raw/bgm_*,@raw/snd_*,@string/default_web_client_id,@string/google_crash_reporting_api_key,@string/project_id,@string/google_app_id" />

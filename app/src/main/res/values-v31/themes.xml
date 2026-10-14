@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.TeikaFusion" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/app_background</item>
+        <item name="android:statusBarColor">@color/app_background</item>
+        <!-- Splash nativa de Android 12+: fondo azul + el icono del juego, centrado por el sistema.
+             Apunta a un BITMAP normal, no al @mipmap/ic_launcher adaptativo: la splash SOLO enmascara
+             (y recorta a los 2/3 centrales) los adaptive icons, y por eso el icono salía con zoom y
+             con el marco cortado. Un drawable plano se dibuja entero y centrado. -->
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_splash_icon</item>
+        <item name="android:windowSplashScreenBackground">@color/app_background</item>
+    </style>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Icono adaptativo (minSdk 26 → es el ÚNICO icono que se renderiza en cualquier dispositivo).
+     Icono nuevo 2026-09-30, el mismo que Play (store_assets/icon_1024.png, generado por
+     tools/icono_play.py): Teikas FIELES al juego —mate, cejas gruesas, ojos macizos— en un tablero de
+     bloques biselados. El arte va a 76 dp dentro del lienzo de 108: el lanzador enseña los 72
+     centrales, así que llena todo el área visible con 2 dp de sobra por lado (ninguna máscara deja
+     ver una raya de fondo). En máscara circular se pierden las esquinas, que son bloques de adorno;
+     los tres Teikas quedan dentro. Sin capa monochrome a propósito: un PNG a todo color se aplana a
+     un pegote en los iconos temáticos de Android 13+; sin ella, el sistema muestra el icono normal. -->
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MonochromeLauncherIcon">
+    <background android:drawable="@drawable/ic_launcher_background" />
+    <foreground android:drawable="@mipmap/ic_launcher_foreground" />
+</adaptive-icon>

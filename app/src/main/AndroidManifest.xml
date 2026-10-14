@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <!-- Notificaciones de reenganche (energía llena, reto diario, racha en peligro). Android 13+
+         exige solicitarlo en tiempo de ejecución (lo pide MainActivity). -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
+    <!--
+        SIN respaldo automático de Android (`allowBackup="false"`, 2026-09-01). El juego tiene el
+        SUYO —Firestore `cloud_saves`, detrás de la cuenta de Google— y le insiste al jugador en
+        vincularla justo para no perder la partida; con el de Android encima, ese aviso era mentira.
+
+        Y además rompía la sesión: al reinstalar devolvía la sesión CIFRADA de Firebase Auth sin la
+        clave que la abre (esa se regenera en cada instalación), así que la app arrancaba con la
+        cuenta de antes por un lado y Ajustes pidiendo iniciar sesión por otro. Reproducido en el
+        móvil del usuario y confirmado por los timestamps de `/data/data`. El porqué completo está en
+        `res/xml/data_extraction_rules.xml`.
+    -->
+    <application
+        android:name=".TeikaFusionApp"
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TeikaFusion">
+
+        <!-- ID de aplicación de AdMob. El valor sale de un recurso que cambia con el buildType:
+             release usa el ID REAL y debug los de prueba de Google (ver res/values/admob.xml de
+             cada source set). Pulsar tus propios anuncios reales mientras desarrollas es tráfico
+             inválido y AdMob suspende cuentas por eso. -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/admob_app_id"/>
+
+        <!-- (Retirado el override de AD_SERVICES_CONFIG que apuntaba a gma_ad_services_config:
+             el conflicto AdMob vs Firebase Measurement se resolvió aguas arriba en el SDK de Ads
+             24+, y ese recurso ya NO existe en el 25 — rompía el linking de recursos.) -->
+
+        <!-- Push remotas de Firebase Cloud Messaging (reenganche desde la consola). -->
+        <service
+            android:name=".NotificationService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <!-- Canal por defecto + icono que usa FCM para las push remotas. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/notif_channel_reengage"/>
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_notification"/>
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/notif_accent"/>
+
+        <!-- Portrait FIJO a propósito: el juego está diseñado en vertical (tablero + bandeja) y el
+             marco arcoíris del combo NUNCA debe rotar (decisión de diseño). configChanges evita la
+             recreación — la restauración de estado depende de ello (auditoría Z-04, it. 18). -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|keyboardHidden|keyboard|navigation|uiMode|density|fontScale|locale|layoutDirection|colorMode|touchscreen|mcc|mnc"
+            android:theme="@style/Theme.TeikaFusion">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

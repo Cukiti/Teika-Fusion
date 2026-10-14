@@ -1,0 +1,20 @@
+const fs=require('fs'),cp=require('child_process'),crypto=require('crypto');
+const reportPath='docs/audio/renovacion-resultados.json',report=JSON.parse(fs.readFileSync(reportPath));
+const record=report.records.find(r=>r.id==='bgm_gameplay'),previous=structuredClone(record);
+const base='%USERPROFILE%/.codex/artifacts/elevenlabs/gameplay-trim-2026-09-14';
+const hash=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+if(hash(record.target)!==record.finalSha256)throw Error('Resource changed');
+fs.mkdirSync(base,{recursive:true});const backup=base+'/before.ogg',stage=base+'/bgm_gameplay.ogg';
+if(fs.existsSync(backup))throw Error('Backup exists; inspect before rerunning');
+fs.copyFileSync(record.target,backup);
+cp.execFileSync('ffmpeg',['-v','error','-y','-i',backup,'-af','atrim=end_sample=8496000,asetpts=PTS-STARTPTS','-c:a','libvorbis','-q:a','5',stage]);
+const raw=cp.execFileSync('ffmpeg',['-v','error','-i',stage,'-f','f32le','pipe:1'],{maxBuffer:128e6});
+const pcm=new Float32Array(raw.buffer,raw.byteOffset,raw.length/4);let peak=0;
+for(const v of pcm){if(!Number.isFinite(v))throw Error('Invalid PCM');peak=Math.max(peak,Math.abs(v));}
+if(pcm.length!==8496000*2||peak>=1)throw Error('Duration or clipping check failed');
+if(hash(record.target)!==previous.finalSha256)throw Error('Concurrent change');
+fs.copyFileSync(stage,record.target);
+Object.assign(record,{stage,finalSha256:hash(stage),bytes:fs.statSync(stage).size,processing:{rate:48000,channels:2,input:backup,inputSha256:previous.finalSha256,operation:'Keep first 177 seconds of installed 180-second file; no added crossfade, gain or time stretch'},verified:{declaredSeconds:177,decodedSeconds:177,peakDb:20*Math.log10(peak),allFinite:true}});
+fs.writeFileSync(reportPath,JSON.stringify(report,null,2)+'\n');
+fs.writeFileSync('docs/audio/gameplay-recorte-tres-segundos.json',JSON.stringify({previous,backup,current:record,installedAt:new Date().toISOString()},null,2)+'\n');
+console.log(JSON.stringify({duration:177,peakDb:record.verified.peakDb,backup}));

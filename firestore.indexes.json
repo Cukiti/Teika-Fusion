@@ -1,0 +1,10 @@
+{
+  "indexes": [],
+  "fieldOverrides": [
+    {
+      "collectionGroup": "cloud_saves",
+      "fieldPath": "json",
+      "indexes": []
+    }
+  ]
+}

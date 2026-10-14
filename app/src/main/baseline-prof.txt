@@ -1,0 +1,15 @@
+# PERFIL BASE DEL JUEGO (perf 2026-09-26).
+#
+# Sin este archivo, el código del juego se ejecuta INTERPRETADO y se compila a nativo sobre la marcha
+# (JIT) mientras el jugador juega: los primeros minutos de cada instalación, y tras cada
+# actualización, el motor (GameViewModel, TeikaPhysicsWorld), el tablero y los VFX llegan a su
+# primera rotura de líneas sin compilar — tirones que ninguna optimización de Compose puede quitar.
+#
+# Con él, Play (y `profileinstaller`, que ya llega con Compose, en las instalaciones locales) compila
+# por adelantado TODO el paquete del juego. Las librerías traen sus propios perfiles; este cubre lo
+# nuestro. R8 lo reescribe solo con el mapeo del release: no hay que tocarlo al ofuscar.
+#
+# Es un perfil escrito a mano con comodines, no uno generado con Macrobenchmark: cubre de más en vez
+# de medir qué es caliente. Si algún día se monta un módulo de benchmark, sustituirlo por el generado.
+HSPLcom/cukiti/teikafusion/**->**(**)**
+Lcom/cukiti/teikafusion/**;

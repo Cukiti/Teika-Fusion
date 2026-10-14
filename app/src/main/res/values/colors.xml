@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- (Colores de la plantilla de Android Studio retirados: la UI es 100% Compose y sus colores
+         viven en ui/theme; aquí solo quedan los que consume el sistema nativo.) -->
+    <!-- Fondo nativo del arranque (windowBackground + statusBar + splash Android 12+).
+         Debe coincidir con theme.AppBackground (Compose) = azul vivo #2F54B5. -->
+    <color name="app_background">#2F54B5</color>
+    <!-- Acento de notificaciones (tinte del icono monocromo en la status bar). Neón de la marca. -->
+    <color name="notif_accent">#4DB8FF</color>
+</resources>

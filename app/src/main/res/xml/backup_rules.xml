@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Lo mismo que `data_extraction_rules.xml` pero para Android 11 y anteriores (`fullBackupContent`).
+    Ver allí el porqué completo: el respaldo automático de Android devolvía al reinstalar la sesión
+    CIFRADA de Firebase Auth sin su clave, y la app arrancaba con una sesión que no se puede abrir.
+
+    Con `allowBackup="false"` en el manifiesto esto ya no se usa, pero se deja explícito: si algún día
+    alguien vuelve a poner `allowBackup="true"` sin leer, que al menos no se lleve los `shared_prefs`.
+-->
+<full-backup-content>
+    <exclude domain="sharedpref" path="." />
+    <exclude domain="file" path="." />
+    <exclude domain="database" path="." />
+    <exclude domain="root" path="." />
+</full-backup-content>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Privacidad – Teika Fusion</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #12162e; color: #d0d8f0;
+    line-height: 1.75; padding: 32px 16px 64px;
+  }
+  .container { max-width: 760px; margin: 0 auto; }
+  nav {
+    margin-bottom: 32px; padding-bottom: 16px;
+    border-bottom: 1px solid #2d3870;
+    display: flex; align-items: center; gap: 12px;
+  }
+  nav a { color: #4db8ff; text-decoration: none; font-size: 0.9rem; }
+  nav span { color: #3a4470; }
+  h1 {
+    font-size: 2rem; font-weight: 900;
+    background: linear-gradient(135deg, #fff 40%, #4db8ff);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+  }
+  .updated { color: #4a5880; font-size: 0.85rem; margin-bottom: 32px; }
+  h2 {
+    font-size: 1.1rem; font-weight: 700; color: #7ab8ff;
+    margin: 36px 0 12px; padding-bottom: 6px;
+    border-bottom: 1px solid #1e2550;
+  }
+  h3 { font-size: 0.95rem; font-weight: 700; color: #d0d8f0; margin: 20px 0 6px; }
+  p { margin-bottom: 14px; color: #b0bcd8; }
+  ul { margin: 8px 0 14px 20px; }
+  li { margin-bottom: 8px; color: #b0bcd8; }
+  a  { color: #4db8ff; }
+  .badge {
+    display: inline-block; background: #1c2550; border: 1px solid #2d3870;
+    border-radius: 8px; padding: 3px 10px; font-size: 0.8rem;
+    color: #7a8fc2; margin: 2px 4px 2px 0;
+  }
+  .card {
+    background: #1a2044; border: 1px solid #2d3870;
+    border-radius: 12px; padding: 16px 18px; margin: 16px 0;
+  }
+  .card.key { border-color: #3d5a99; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 0.9rem; }
+  th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid #1e2550; color: #b0bcd8; }
+  th { color: #7ab8ff; font-weight: 700; }
+  .scroll { overflow-x: auto; }
+  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid #1e2550;
+           color: #3a4470; font-size: 0.8rem; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <nav>
+    <a href="/">Teika Fusion</a>
+    <span>/</span>
+    <span style="color:#d0d8f0">Política de Privacidad</span>
+  </nav>
+
+  <h1>Política de Privacidad</h1>
+  <p class="updated">Última actualización: 6 de septiembre de 2026</p>
+
+  <p>Esta Política de Privacidad describe qué datos trata <strong>Teika Fusion</strong> (la «App»),
+  desarrollada por Cukiti, y para qué. Antes de empezar, la App muestra enlaces a esta política y a
+  los Términos de Uso; al tocar <strong>«Aceptar y jugar»</strong> confirmas que los has leído y aceptado.</p>
+
+  <div class="card key">
+    <p style="margin:0"><strong>En resumen:</strong> puedes jugar entero sin crear ninguna cuenta y
+    sin que guardemos tu progreso en la nube. Solo si decides <strong>vincular Google</strong>
+    creamos una cuenta y respaldamos tu progreso. En cualquier momento puedes
+    <a href="/borrar-cuenta">eliminar tu cuenta y todos tus datos</a>.</p>
+  </div>
+
+  <h2>1. Dos formas de jugar</h2>
+
+  <h3>Como invitado (por defecto)</h3>
+  <p>No creamos ninguna cuenta ni identificador propio, y tu progreso —niveles, monedas, estrellas,
+  compañeros, cristales y ajustes— se guarda <strong>solo en tu dispositivo</strong>. Se elimina al
+  desinstalar la App. No apareces en el ranking.</p>
+  <p>Aun así, la App sigue usando los servicios de analítica, diagnóstico y publicidad descritos en
+  la sección 3.</p>
+
+  <h3>Con cuenta vinculada (opcional)</h3>
+  <p>Si eliges «Vincular Google», creamos una cuenta mediante
+  <strong>Firebase Authentication</strong> y, a partir de ese momento, tu progreso se respalda en
+  <strong>Cloud Firestore</strong> para que no lo pierdas al cambiar de dispositivo, y tu nombre de
+  jugador aparece en el <strong>ranking público</strong>.</p>
+
+  <h2>2. Datos que tratamos cuando vinculas una cuenta</h2>
+
+  <div class="scroll">
+  <table>
+    <tr><th>Dato</th><th>De dónde sale</th><th>Para qué</th></tr>
+    <tr>
+      <td><strong>Identificador de usuario</strong> (UID)</td>
+      <td>Firebase Authentication</td>
+      <td>Vincular tu progreso a tu cuenta</td>
+    </tr>
+    <tr>
+      <td><strong>Nombre y correo electrónico</strong></td>
+      <td>Google, al iniciar sesión</td>
+      <td>Se almacenan en tu perfil de Firebase Authentication. La App no los muestra ni los usa para
+          nada más, y nunca los publicamos</td>
+    </tr>
+    <tr>
+      <td><strong>Nombre de jugador</strong> (máx. 10 caracteres)</td>
+      <td>Lo eliges tú dentro de la App</td>
+      <td>Identificarte en el ranking público. <strong>Es visible para otros jugadores</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Progreso del juego</strong></td>
+      <td>Tu partida</td>
+      <td>Respaldo en la nube y ranking: nivel, estrellas, monedas, experiencia, compañeros
+          y cristales</td>
+    </tr>
+    <tr>
+      <td><strong>Marcas de compra</strong></td>
+      <td>Tus compras en Google Play</td>
+      <td>Señales de sí/no —«quitar anuncios», «paquete inicial entregado» y qué packs ya
+          cobraron su bono de bienvenida— para restaurar lo comprado en un dispositivo nuevo y no
+          entregarlo dos veces. <strong>No recibimos ni guardamos ningún dato de pago</strong></td>
+    </tr>
+  </table>
+  </div>
+
+  <p>No recogemos tu ubicación, contactos, fotos, mensajes, archivos, calendario ni datos de salud.
+  La App no solicita ningún permiso de acceso a ellos.</p>
+
+  <h2>3. Servicios de terceros</h2>
+
+  <p><span class="badge">Firebase Authentication</span> Gestiona el inicio de sesión y tu identidad.
+  Solo se activa si vinculas una cuenta.</p>
+
+  <p><span class="badge">Cloud Firestore</span> Almacena el respaldo de tu progreso, tu entrada del
+  ranking y tu perfil de jugador. Solo si vinculas una cuenta.</p>
+
+  <p><span class="badge">Cloud Functions</span> Valida en nuestros servidores las marcas que se
+  envían al ranking, para evitar trampas.</p>
+
+  <p><span class="badge">Firebase Analytics</span> Estadísticas de uso: partidas jugadas, niveles
+  superados y fallados, aperturas de la tienda y visionados de anuncios. Nos dice qué
+  niveles son demasiado difíciles y qué funciones se usan.</p>
+
+  <p><span class="badge">Firebase Crashlytics</span> Informes de fallos: traza del error, modelo de
+  dispositivo, versión del sistema y el contexto de la partida (nivel y modo de juego). Si tienes
+  cuenta vinculada, se asocia a tu identificador para poder reproducir el fallo.</p>
+
+  <p><span class="badge">Firebase Cloud Messaging</span> Notificaciones de reenganche. Puedes
+  desactivarlas desde los ajustes de notificaciones de tu dispositivo.</p>
+
+  <p><span class="badge">Google Play Billing</span> Procesa las compras opcionales dentro de la App
+  (el paquete inicial, los packs de monedas y «quitar anuncios»). <strong>El pago lo gestiona
+  íntegramente Google</strong>: no vemos ni almacenamos tu tarjeta, tu dirección de facturación ni
+  ningún otro dato de pago. De cada compra la App solo recibe qué producto se compró y si sigue
+  activo, para entregarte su contenido y restaurarlo si reinstalas. Los reembolsos los gestiona
+  Google Play.</p>
+
+  <p><span class="badge">Google AdMob</span> Puede mostrar anuncios recompensados, intersticiales y
+  banners. Los recompensados solo aparecen si eliges verlos; los intersticiales se limitan a pausas
+  naturales entre niveles. Según tu región y tus opciones de privacidad, AdMob puede acceder al
+  identificador de publicidad y compartir datos con Google y sus socios para seleccionar o medir
+  anuncios. Cuando es legalmente necesario, la App presenta primero el formulario de privacidad de
+  Google UMP y respeta la elección realizada.</p>
+
+
+  <h2>4. Con quién compartimos datos</h2>
+  <p><strong>No vendemos ni alquilamos tus datos.</strong> El único caso en que se comparten con
+  terceros es la <strong>publicidad</strong>: AdMob envía el identificador de publicidad y datos de
+  uso a Google y a sus socios para servir los anuncios.</p>
+  <p>El resto de proveedores (Firebase, Google Play) actúan como procesadores por cuenta nuestra,
+  bajo sus propias políticas:</p>
+  <ul>
+    <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Política de privacidad de Google</a></li>
+    <li><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Privacidad de Firebase</a></li>
+    <li><a href="https://support.google.com/admob/answer/6128543" target="_blank" rel="noopener">Privacidad de AdMob</a></li>
+  </ul>
+
+  <h2>5. Tus derechos y cómo ejercerlos</h2>
+
+  <div class="card">
+    <p><strong>Eliminar tu cuenta y todos tus datos.</strong> Desde la App, en
+    <em>Ajustes → Zona de peligro → «Eliminar mi cuenta»</em>. El borrado es inmediato e
+    irreversible. También puedes solicitarlo por correo. Instrucciones completas en
+    <a href="/borrar-cuenta">Eliminar cuenta y datos</a>.</p>
+    <p style="margin-bottom:0"><strong>Empezar de cero sin perder la cuenta.</strong> En
+    <em>Ajustes → «Borrar»</em>, que restablece tu progreso y conserva la cuenta.</p>
+  </div>
+
+  <p>Según tu país, puedes tener derecho a acceder, rectificar, oponerte al tratamiento, limitarlo o
+  solicitar la portabilidad de tus datos. Escríbenos a
+  <a href="mailto:andersonkayle02@gmail.com">andersonkayle02@gmail.com</a> desde la dirección
+  asociada a tu cuenta y responderemos en un plazo máximo de 30 días.</p>
+
+  <h2>6. Cuánto conservamos los datos</h2>
+  <ul>
+    <li><strong>Progreso, ranking y perfil:</strong> mientras tengas la cuenta. Se eliminan al
+        borrarla.</li>
+    <li><strong>Datos locales del dispositivo:</strong> hasta que desinstales la App o restablezcas
+        el progreso.</li>
+    <li><strong>Analítica agregada y anónima:</strong> hasta <strong>14 meses</strong>, por la
+        política de retención de Google Analytics for Firebase. Ya no permite identificarte.</li>
+    <li><strong>Registros técnicos</strong> de seguridad y prevención de fraude: máximo
+        <strong>90 días</strong>.</li>
+  </ul>
+  <h2>7. Menores de edad</h2>
+  <p>La App está destinada a personas de <strong>13 años o más</strong> y no está dirigida a menores
+  de 13 años. No recopilamos conscientemente datos de menores de esa edad. Si eres su padre, madre o
+  tutor y crees que nos ha facilitado datos personales, escríbenos y los eliminaremos.</p>
+
+  <h2>8. Seguridad</h2>
+  <p>Todo el tráfico viaja cifrado (HTTPS/TLS). El acceso a tus datos está restringido por reglas de
+  seguridad de Firestore verificadas automáticamente: solo tú puedes leer y escribir tu respaldo y tu
+  perfil, y el ranking únicamente lo escriben nuestros servidores. Ningún otro jugador puede acceder
+  a tu progreso.</p>
+
+  <h2>9. Cambios a esta política</h2>
+  <p>Podemos actualizarla ocasionalmente. Los cambios se publicarán en esta página con una nueva
+  fecha. El uso continuado de la App tras los cambios implica su aceptación.</p>
+
+  <h2>10. Contacto</h2>
+  <p>Cukiti · <a href="mailto:andersonkayle02@gmail.com">andersonkayle02@gmail.com</a></p>
+
+  <footer>© 2026 Teika Fusion · Todos los derechos reservados</footer>
+
+</div>
+</body>
+</html>

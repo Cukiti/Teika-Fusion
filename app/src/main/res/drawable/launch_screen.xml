@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fondo de arranque nativo (windowBackground) para Android 11 y anteriores: fondo azul + el icono
+     del juego centrado. En Android 12+ el icono lo muestra la splash del sistema (ver values-v31). -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/app_background" />
+    <!-- Mismo bitmap plano que la splash de Android 12+ (ver values-v31/themes.xml): el
+         @mipmap/ic_launcher adaptativo se recorta a sus 2/3 centrales y salía con zoom. -->
+    <item
+        android:width="160dp"
+        android:height="160dp"
+        android:gravity="center"
+        android:drawable="@drawable/ic_splash_icon" />
+</layer-list>

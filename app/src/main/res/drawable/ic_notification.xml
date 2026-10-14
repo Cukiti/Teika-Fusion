@@ -1,0 +1,23 @@
+<!--
+    Icono de notificación (status bar). DEBE ser monocromo blanco sobre transparente: Android lo
+    tiñe con el color del sistema y solo respeta el canal alfa. Glifo = rejilla 2×2 de bloques
+    (identidad "block puzzle" de Teika Fusion).
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M4.8,3 L9.2,3 Q11,3 11,4.8 L11,9.2 Q11,11 9.2,11 L4.8,11 Q3,11 3,9.2 L3,4.8 Q3,3 4.8,3 Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M14.8,3 L19.2,3 Q21,3 21,4.8 L21,9.2 Q21,11 19.2,11 L14.8,11 Q13,11 13,9.2 L13,4.8 Q13,3 14.8,3 Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M4.8,13 L9.2,13 Q11,13 11,14.8 L11,19.2 Q11,21 9.2,21 L4.8,21 Q3,21 3,19.2 L3,14.8 Q3,13 4.8,13 Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M14.8,13 L19.2,13 Q21,13 21,14.8 L21,19.2 Q21,21 19.2,21 L14.8,21 Q13,21 13,19.2 L13,14.8 Q13,13 14.8,13 Z" />
+</vector>
